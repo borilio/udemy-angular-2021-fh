@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-agregar',
@@ -13,10 +14,13 @@ export class AgregarComponent implements OnInit {
     poder: 0
   };
   
-  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+  /*
+  Ya no emitimos el personaje, si no que usamos el servicio, por lo que lo quitamos
+  */
+  //@Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
   //Métodos
-  constructor() { }
+  constructor(private _dbzService:DbzService) { }
 
   ngOnInit(): void {
   }
@@ -24,10 +28,14 @@ export class AgregarComponent implements OnInit {
   agregar(): void {    
     //Si el nombre NO está vacío, lo enviamos, si si, nos salimos.
     if (this.nuevo.nombre) {
+      //Usamos el servicio para guardar el personaje nuevo
+      this._dbzService.agregarPersonaje(this.nuevo);
+      
+      /*Esto era para usar el @Output, ahora con el servicio es lo de arriba*/
       //Lo creamos y emitimos al padre
-      console.log("Personaje creado, y emitido al padre:", this.nuevo);
+      //console.log("Personaje creado, y emitido al padre:", this.nuevo);
       //Emitimos el evento con el personaje nuevo
-      this.onNuevoPersonaje.emit(this.nuevo);
+      //this.onNuevoPersonaje.emit(this.nuevo);
 
       //Lo reseteamos
       this.nuevo = {  

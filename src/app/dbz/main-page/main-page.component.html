@@ -4,14 +4,11 @@
 <div class="row">
     
     <div class="col">
-        <app-personajes [personajes]="this.personajes" ></app-personajes>
+        <app-personajes></app-personajes>
     </div>
 
     <div class="col">
-        <app-agregar 
-            [nuevo]="this.nuevo"
-            (onNuevoPersonaje)="this.agregarNuevoPersonaje($event)"
-        ></app-agregar>
+        <app-agregar [nuevo]="this.nuevo"></app-agregar>
     </div>
 
 </div>
