@@ -4,33 +4,14 @@
 <div class="row">
     
     <div class="col">
-        <app-personajes [personajes]="this.personajes" >
-
-        </app-personajes>
+        <app-personajes [personajes]="this.personajes" ></app-personajes>
     </div>
 
     <div class="col">
-        <h3>Agregar</h3>
-        <hr>
-
-        <form (ngSubmit)="agregar()" action="">
-            <input 
-                type="text" 
-                placeholder="Nombre" 
-                [(ngModel)]="nuevo.nombre" 
-                name="nombre"    
-            />
-            <input 
-                type="number" 
-                placeholder="Poder" 
-                [(ngModel)]="nuevo.poder" 
-                name="poder"
-            />
-            <button type="submit">
-                Agregar
-            </button>
-        </form>
-
+        <app-agregar 
+            [nuevo]="this.nuevo"
+            (onNuevoPersonaje)="this.agregarNuevoPersonaje($event)"
+        ></app-agregar>
     </div>
 
 </div>

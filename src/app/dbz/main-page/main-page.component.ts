@@ -20,24 +20,18 @@ export class MainPageComponent implements OnInit {
     poder: 0
   };
 
+  agregarNuevoPersonaje(personajeNuevo: Personaje): void {
+    //Añadimos el personaje recibido por evento, a la lista de personajes
+    this.personajes.push(personajeNuevo);
+    console.log("Recibido del hijo y añadido: ", personajeNuevo);
+    console.log("Array completo: ", this.personajes);
+  }
+
+
   constructor() { }
 
   ngOnInit(): void { }
 
-  agregar(): void {    
-    //Si el nombre NO está vacío, lo agregamos, si si, nos salimos.
-    if (this.nuevo.nombre) {
-      //Lo agregamos
-      this.personajes.push(this.nuevo);
-      //Lo reseteamos
-      this.nuevo = {  
-        nombre: '',
-        poder: 0
-      };
-    } else{
-      alert("El nombre no puede estar vacío");
-    }
-
-  }
+  
 
 }
